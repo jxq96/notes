@@ -1,0 +1,47 @@
+# git笔记
+
+## git常见的命令
+
+- git add filename  添加文件到仓库
+- git commit file -m"备注" 提交文件到仓库
+- git status 查看仓库当前的状态
+- git diff file 查看文件做过了什么修改
+- git log  查看版本历史    -p filename  显示文件的改动  --graph 以图表形式查看分支
+- git reflog 查看命令历史
+- HEAD为git中指向当前版本的指针 HEAD^为指向上一版本指针 类似HEAD^^.
+- git reset --hard 版本ID  回退到这一版本   git reset HEAD file ，丢弃暂存区的修改，回退到版本库中的最新版本
+- git checkout --filename   撤销文件在工作区的修改 ，--不能少，否则就是创建一个新分支，其实就是用版本库中的文件代替工作区中的文件
+- git rm filename  从版本库中删除文件，rm filename 删除工作区中的文件
+- git remote add origin git@github.com:jxq96/远程仓库名.git  //将本地库与远程仓库关联
+- git push -u origin master //将本地库分支推送到远程库master上，首次推送需加-u，作用是将origin仓库的master分支设置为本地当前仓库的上游
+- .git checkout -b dev  //创建一个叫dev的分支，-b表示创建并切换  相当于   git branch dev + git checkout dev  两条命令
+- 
+- - git branch 会列出当前所有分支
+  - git branch name 新建分支
+  - git branch -d name 删除分支   -D强制删除（没合并时）
+- git merge 分支名  合并分支到master分支，遇到冲突要先解决冲突再merge
+- git merge --no-ff -m“”  这是创建一个新的commit再合并，因此要-m信，--no-ff 表示禁用“fast forward”，防止在master前的分支删除导致数据丢失
+- 
+- - git stash  隐藏当前工作区，现在用status查看是空的
+  - git stash apply  恢复后stash内容不删除  可用git stash drop 删除
+  - git stash pop  恢复同时删除stash内容 git stash pop = git stash apply  + git stash drop
+  - git stash list 查看stash
+  - 隐藏多个分支时 可用 git stash apply stash@{number} 指定恢复哪一个stash
+- git tag name commitid  可以打标签，不加commitid默认打在最新提交的commit上
+-  git commit --amend   修改提交信息
+- git remote add 添加远程仓库
+- git push -u origin branchname   将分支push到远程库并保持分支名称不变
+- git checkout -b feature origin/feature  在本地创建与远程相同名称的分支  
+- git fetch 相当于是从远程获取最新版本到本地，不会自动merge
+- git pull  相当于是从远程获取最新版本并merge到本地
+- git branch --set-upstream dev origin/dev 指定本地dev分支与远程dev分支的连接
+- git tag
+  - git tag versionname  在当前的分支上给最新commit打上标签
+  -   git tag versionname 版本号  在相应的版本打上标签
+  -  git tag  查看所有标签，列出时不按时间排序，是按字母排序
+  -  git show tagname 查看标签信息
+  -  git tag -a versionname -m “ ” 版本号 创建带说明的标签，-a指定标签名，-m指定说明文
+  -  git tag -d versionname 删除标签（在本地删除）
+  - git push origin versionname 推送标签到远程
+  - git push origin --tags 一次性提交所有标签
+  - 标签已经推送到远程，要删除，先删除本地的，再远程删除，也是push ：git push origin  :/refs/tags/versionname 
