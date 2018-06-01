@@ -4,6 +4,7 @@
 
 - git add filename  添加文件到仓库
 - git commit file -m"备注" 提交文件到仓库
+- git commt -a file 可以直接commit跳过add步骤
 - git status 查看仓库当前的状态
 - git diff file 查看文件做过了什么修改
 - git log  查看版本历史    -p filename  显示文件的改动  --graph 以图表形式查看分支
@@ -28,7 +29,7 @@
   - git stash list 查看stash
   - 隐藏多个分支时 可用 git stash apply stash@{number} 指定恢复哪一个stash
 - git tag name commitid  可以打标签，不加commitid默认打在最新提交的commit上
--  git commit --amend   修改提交信息
+- git commit --amend   修改提交信息
 - git remote add 添加远程仓库
 - git push -u origin branchname   将分支push到远程库并保持分支名称不变
 - git checkout -b feature origin/feature  在本地创建与远程相同名称的分支  
