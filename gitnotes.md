@@ -7,19 +7,20 @@
 - git commt -a file 可以直接commit跳过add步骤
 - git status 查看仓库当前的状态
 - git diff file 查看文件做过了什么修改
-- git log  查看版本历史    -p filename  显示文件的改动  --graph 以图表形式查看分支
+- git log  查看版本历史    -p filename  显示文件的改动  --graph 以图表形式查看分支，后面加--stat可以显示详细信息
 - git reflog 查看命令历史
 - HEAD为git中指向当前版本的指针 HEAD^为指向上一版本指针 类似HEAD^^.
 - git reset --hard 版本ID  回退到这一版本   git reset HEAD file ，丢弃暂存区的修改，回退到版本库中的最新版本
 - git checkout --filename   撤销文件在工作区的修改 ，--不能少，否则就是创建一个新分支，其实就是用版本库中的文件代替工作区中的文件
-- git rm filename  从版本库中删除文件，rm filename 删除工作区中的文件
-- git remote add origin git@github.com:jxq96/远程仓库名.git  //将本地库与远程仓库关联
+- git rm filename  从版本库和工作区中删除文件，-f 可以强制删除已经提交到暂存区的，rm filename 删除工作区中的文件，git rm --cached file 删除暂存区不删除工作区
+- git remote add [简写名]/origin git@github.com:jxq96/远程仓库名.git  //将本地库与远程仓库关联
 - git push -u origin master //将本地库分支推送到远程库master上，首次推送需加-u，作用是将origin仓库的master分支设置为本地当前仓库的上游
 - .git checkout -b dev  //创建一个叫dev的分支，-b表示创建并切换  相当于   git branch dev + git checkout dev  两条命令
 - 
 - - git branch 会列出当前所有分支
   - git branch name 新建分支
   - git branch -d name 删除分支   -D强制删除（没合并时）
+  - git branch --merged 显示没有合并到当前分支的分支， --no-merged 相反
 - git merge 分支名  合并分支到master分支，遇到冲突要先解决冲突再merge
 - git merge --no-ff -m“”  这是创建一个新的commit再合并，因此要-m信，--no-ff 表示禁用“fast forward”，防止在master前的分支删除导致数据丢失
 - 
@@ -31,6 +32,7 @@
 - git tag name commitid  可以打标签，不加commitid默认打在最新提交的commit上
 - git commit --amend   修改提交信息
 - git remote add 添加远程仓库
+- git ls-remote 显示获取远程引用的完整列表
 - git push -u origin branchname   将分支push到远程库并保持分支名称不变
 - git checkout -b feature origin/feature  在本地创建与远程相同名称的分支  
 - git fetch 相当于是从远程获取最新版本到本地，不会自动merge
